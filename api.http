@@ -1,0 +1,96 @@
+### Probar conexion
+GET http://localhost:1234/
+
+
+### PARA SEPARAR LAS REQUEST DEBEMOS USAR LOS 3#
+### NO USAR ; PORQUE ROMPEN TODO
+
+###--------------------- RESERVAS --------------------
+
+### Traer todas las reservas
+GET http://localhost:1234/reservas/
+
+
+### Traer reserva por id
+GET http://localhost:1234/reservas/6748c6b20d829b8d4616c94b
+
+
+### Eliminar reserva
+
+DELETE http://localhost:1234/reservas/6718475f28bdd292f4fdbc8c
+
+
+### Crear reserva
+POST http://localhost:1234/reservas
+Content-Type: application/json
+
+{
+  "fecha": "2024-12-04",
+  "turno": "cena",
+  "hora": "22:00",
+  "cantidadPersonas": 2
+}
+
+
+
+###--------------------- MESAS --------------------
+
+### CREAR MESAS
+POST https://app-reservas-express-mondodb-production.up.railway.app/mesas
+Content-Type: application/json
+
+{
+  "capacidad": 2
+}
+
+### TRAER MESAS
+GET http://localhost:1234/mesas
+Content-Type: application/json
+
+
+### TRAER MESA POR ID
+### 
+GET http://localhost:1234/mesas/674a4c0d07afd749939ac981
+Content-Type: application/json
+
+
+
+###--------------------- dias disponibles --------------------
+GET http://localhost:1234/calendario/dias?turno=cena&personas=6
+Content-Type: application/json
+
+### /dias/:fecha/horarios
+
+###--------------------- horarios x fecha --------------------
+GET http://localhost:1234/calendario/dias/2024-12-05/horarios?turno=cena&personas=10
+Content-Type: application/json
+
+
+
+###--------------------- AUTH --------------------
+
+### Crear USUARIO e iniciar sesion
+POST http://localhost:1234/auth/register
+Content-Type: application/json
+
+{
+  "userName": "HernanSanta",
+  "email": "hernansantarelli87@gmail.com"
+}
+
+### iniciar sesion
+POST http://localhost:1234/auth/login
+Content-Type: application/json
+
+{
+  "userName": "HernanSanta"
+}
+
+### Verificar link para iniciar sesion
+GET https://app-reservas-express-mondodb-production.up.railway.app/auth/login/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGE0ZGE5MDdhZmQ3NDk5MzlhYzlhNCIsImxvZ2luVG9rZW4iOiI2YWE3ZjUzYTAxNzU5Y2NmODNhM2U3YjI4YTI4Y2MxZWEwM2IwNDQ4NTUxMGJmMjg5MDMzNjBmNDg4ZTZhMGYxIiwiaWF0IjoxNzMyOTIyNzkzLCJleHAiOjE3MzI5MjM2OTN9.EJLGpDEKZjQf3S8jfR_sGPWATFVnrJUwv59gqyQAOcU
+Content-Type: application/json
+
+
+### Cerrar sesión
+GET http://localhost:1234/auth/logout
+Content-Type: application/json
